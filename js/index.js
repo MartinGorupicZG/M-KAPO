@@ -1,11 +1,40 @@
-import { TweenMax, Expo, TimelineMax } from "gsap/TweenMax";
+import {
+  TweenMax,
+  Expo,
+  TimelineMax,
+  Power2
+} from "gsap/TweenMax";
+import ScrollMagic from "scrollmagic";
 const tl = new TimelineMax();
-const overlay = document.querySelector(".overlay");
-TweenMax.to(overlay, 2, { delay: 3.2, y: "-100%", ease: Expo.easeInOut });
-tl.staggerFromTo(
-  ".letter",
-  1,
-  { opacity: 0, y: -100 },
-  { opacity: 1, y: 0 },
-  0.3
-).fromTo(".h3", 1, { y: 100, opacity: 0 }, { y: 0, opacity: 1 });
+tl.from(".chimney", 1.2, {
+    x: -600,
+    autoAlpha: 0,
+    ease: Power2.easeOut
+  })
+  .from(".leftwall", .6, {
+    y: -600,
+    x: 200,
+    autoAlpha: 0,
+    ease: Power2.easeOut
+  })
+  .from(".rightwall", .6, {
+    y: -600,
+    x: -200,
+    autoAlpha: 0,
+    ease: Power2.easeOut
+  })
+  .from(".leftroof", .6, {
+    y: -600,
+    autoAlpha: 0,
+    ease: Power2.easeOut
+  })
+  .from(".rightroof", .6, {
+    y: -600,
+    autoAlpha: 0,
+    ease: Power2.easeOut
+  })
+  .from(".gaube", 1, {
+    y: -600,
+    autoAlpha: 0,
+    ease: Power2.easeOut
+  });

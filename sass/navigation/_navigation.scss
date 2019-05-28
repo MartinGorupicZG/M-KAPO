@@ -1,0 +1,51 @@
+.nav {
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 2.5%;
+  height: 15vh;
+}
+
+.links-left,
+.links-right {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  list-style: none;
+  height: 60%;
+}
+
+.link {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.link__a {
+  text-decoration: none;
+  font-size: 1.7rem;
+  font-weight: 900;
+  letter-spacing: 0.2rem;
+  color: var(--black);
+}
+.logo {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+}
+.img-svg {
+  width: 20rem;
+  height: 20rem;
+  position: absolute;
+  top: -3rem;
+}
