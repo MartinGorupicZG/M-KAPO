@@ -5,7 +5,9 @@ import {
   Power2
 } from "gsap/TweenMax";
 import ScrollMagic from "scrollmagic";
-const tl = new TimelineMax();
+const tl = new TimelineMax({
+  delay: 1
+});
 tl.from(".chimney", 1.2, {
     x: -600,
     autoAlpha: 0,

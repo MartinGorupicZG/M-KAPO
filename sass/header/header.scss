@@ -11,6 +11,12 @@
     grid-template-columns: 1fr 1fr;
 }
 
+.inner__left {
+    display: flex;
+    justify-content: start;
+
+}
+
 .inner__right {
     grid-column: 2/3;
     display: flex;
@@ -29,4 +35,10 @@
 .abs-pos {
     position: absolute;
     top: 0;
+}
+
+.text__wrapp {
+    justify-content: center;
+    margin-left: 9rem;
+    margin-top: 22rem;
 }

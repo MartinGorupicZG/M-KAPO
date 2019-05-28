@@ -1,0 +1,13 @@
+.text__bg {
+    position: fixed;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    font-size: 16rem;
+    font-weight: bolder;
+    color: var(--black);
+    letter-spacing: 0.2rem;
+    z-index: -1;
+    opacity: 0.06;
+    text-shadow: 9px 17px 25px rgba(0, 0, 0, 0.12);
+}
