@@ -74,6 +74,39 @@ body {
   font-weight: 900;
   letter-spacing: 0.2rem;
   color: var(--black);
+  position: relative;
+  text-align: center;
+}
+
+.link__a::before {
+  top: 0;
+  left: 0;
+  width: 0;
+  color: #ccc;
+  overflow: hidden;
+  position: absolute;
+  content: attr(data-text);
+  transition: all 0.9s;
+}
+
+.link__a:hover::before {
+  width: 100%;
+}
+
+.link__a::after {
+  bottom: 0;
+  right: 0;
+  width: 0;
+  background-color: var(--text);
+  overflow: hidden;
+  position: absolute;
+  content: attr(data-text);
+  transition: all 0.9s;
+  height: 0.3rem;
+}
+
+.link__a:hover::after {
+  width: 100%;
 }
 
 .logo {
@@ -108,6 +141,7 @@ body {
 .inner__left {
   display: flex;
   justify-content: start;
+  overflow: hidden;
 }
 
 .inner__right {

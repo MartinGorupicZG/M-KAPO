@@ -13847,6 +13847,67 @@ var define;
 
   return ScrollMagic;
 });
+},{}],"js/charming.js":[function(require,module,exports) {
+module.exports = function (element, options) {
+  options = options || {};
+  element.normalize();
+  var splitRegex = options.splitRegex;
+  var tagName = options.tagName || 'span';
+  var classPrefix = options.classPrefix != null ? options.classPrefix : 'char';
+  var count = 1;
+
+  function inject(element) {
+    var parentNode = element.parentNode;
+    var string = element.nodeValue;
+    var split = splitRegex ? string.split(splitRegex) : string;
+    var length = split.length;
+    var i = -1;
+
+    while (++i < length) {
+      var node = document.createElement(tagName);
+
+      if (classPrefix) {
+        node.className = classPrefix + count;
+        count++;
+      }
+
+      node.appendChild(document.createTextNode(split[i]));
+      node.setAttribute('aria-hidden', 'true');
+      parentNode.insertBefore(node, element);
+    }
+
+    if (string.trim() !== '') {
+      parentNode.setAttribute('aria-label', string);
+    }
+
+    parentNode.removeChild(element);
+  }
+
+  ;
+
+  (function traverse(element) {
+    // `element` is itself a text node.
+    if (element.nodeType === 3) {
+      return inject(element);
+    } // `element` has a single child text node.
+
+
+    var childNodes = Array.prototype.slice.call(element.childNodes); // static array of nodes
+
+    var length = childNodes.length;
+
+    if (length === 1 && childNodes[0].nodeType === 3) {
+      return inject(childNodes[0]);
+    } // `element` has more than one child node.
+
+
+    var i = -1;
+
+    while (++i < length) {
+      traverse(childNodes[i]);
+    }
+  })(element);
+};
 },{}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
@@ -13854,8 +13915,18 @@ var _TweenMax = require("gsap/TweenMax");
 
 var _scrollmagic = _interopRequireDefault(require("scrollmagic"));
 
+var _charming = _interopRequireDefault(require("./charming"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var word1 = document.querySelector(".h2__text");
+var word2 = document.querySelector(".h4__text");
+var word3 = document.querySelector(".h5__text");
+var word4 = document.querySelector(".text__p");
+(0, _charming.default)(word1, {
+  tagName: "span",
+  classPrefix: false
+});
 var tl = new _TweenMax.TimelineMax({
   delay: 1
 });
@@ -13863,21 +13934,21 @@ tl.from(".chimney", 1.2, {
   x: -600,
   autoAlpha: 0,
   ease: _TweenMax.Power2.easeOut
-}).from(".leftwall", .6, {
+}).from(".leftwall", 0.6, {
   y: -600,
   x: 200,
   autoAlpha: 0,
   ease: _TweenMax.Power2.easeOut
-}).from(".rightwall", .6, {
+}).from(".rightwall", 0.6, {
   y: -600,
   x: -200,
   autoAlpha: 0,
   ease: _TweenMax.Power2.easeOut
-}).from(".leftroof", .6, {
+}).from(".leftroof", 0.6, {
   y: -600,
   autoAlpha: 0,
   ease: _TweenMax.Power2.easeOut
-}).from(".rightroof", .6, {
+}).from(".rightroof", 0.6, {
   y: -600,
   autoAlpha: 0,
   ease: _TweenMax.Power2.easeOut
@@ -13885,8 +13956,32 @@ tl.from(".chimney", 1.2, {
   y: -600,
   autoAlpha: 0,
   ease: _TweenMax.Power2.easeOut
+}).staggerFromTo(".h2__text span", 0.3, {
+  opacity: 0,
+  y: 400
+}, {
+  opacity: 1,
+  y: 0
+}, 0.1).fromTo(word2, 0.7, {
+  autoAlpha: 0,
+  x: -200
+}, {
+  autoAlpha: 1,
+  x: 0
+}).fromTo(word3, 0.7, {
+  autoAlpha: 0,
+  x: 200
+}, {
+  autoAlpha: 1,
+  x: 0
+}).fromTo(word4, 1, {
+  autoAlpha: 0,
+  y: 500
+}, {
+  autoAlpha: 1,
+  y: 0
 });
-},{"gsap/TweenMax":"node_modules/gsap/TweenMax.js","scrollmagic":"node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js"}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"gsap/TweenMax":"node_modules/gsap/TweenMax.js","scrollmagic":"node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js","./charming":"js/charming.js"}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -13913,7 +14008,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59155" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53466" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
